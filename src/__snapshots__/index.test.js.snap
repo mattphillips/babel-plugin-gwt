@@ -1,0 +1,148 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`gwt transforms fit block with given label: transforms fit block with given label 1`] = `
+"
+it('add', () => {
+  given: 'a and b'
+});
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+it('add given: a and b', () => {});
+"
+`;
+
+exports[`gwt transforms ftest test block with given label: transforms ftest test block with given label 1`] = `
+"
+it('add', () => {
+  given: 'a and b'
+});
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+it('add given: a and b', () => {});
+"
+`;
+
+exports[`gwt transforms it block with given label: transforms it block with given label 1`] = `
+"
+it('add', () => {
+  given: 'a and b'
+});
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+it('add given: a and b', () => {});
+"
+`;
+
+exports[`gwt transforms it block with given when then labels: transforms it block with given when then labels 1`] = `
+"
+it('add', () => {
+  given: 'a and b'
+  const a = 1;
+  const b = 1;
+
+  when: 'added'
+  const actual = a + b;
+
+  then: 'returns 2'
+  expect(actual).toBe(2);
+});
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+it('add given: a and b when: added then: returns 2', () => {
+  const a = 1;
+  const b = 1;
+
+  const actual = a + b;
+
+  expect(actual).toBe(2);
+});
+"
+`;
+
+exports[`gwt transforms it.only block with given label: transforms it.only block with given label 1`] = `
+"
+it('add', () => {
+  given: 'a and b'
+});
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+it('add given: a and b', () => {});
+"
+`;
+
+exports[`gwt transforms it.skip block with given label: transforms it.skip block with given label 1`] = `
+"
+it('add', () => {
+  given: 'a and b'
+});
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+it('add given: a and b', () => {});
+"
+`;
+
+exports[`gwt transforms test block with given label: transforms test block with given label 1`] = `
+"
+it('add', () => {
+  given: 'a and b'
+});
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+it('add given: a and b', () => {});
+"
+`;
+
+exports[`gwt transforms test.only block with given label: transforms test.only block with given label 1`] = `
+"
+it('add', () => {
+  given: 'a and b'
+});
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+it('add given: a and b', () => {});
+"
+`;
+
+exports[`gwt transforms test.skip block with given label: transforms test.skip block with given label 1`] = `
+"
+it('add', () => {
+  given: 'a and b'
+});
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+it('add given: a and b', () => {});
+"
+`;
+
+exports[`gwt transforms xit block with given label: transforms xit block with given label 1`] = `
+"
+it('add', () => {
+  given: 'a and b'
+});
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+it('add given: a and b', () => {});
+"
+`;
+
+exports[`gwt transforms xtest block with given label: transforms xtest block with given label 1`] = `
+"
+it('add', () => {
+  given: 'a and b'
+});
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+it('add given: a and b', () => {});
+"
+`;
