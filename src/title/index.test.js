@@ -1,5 +1,5 @@
-const { transform } = require('babel-core');
-const { constructTitle, getLabelTitle } = require('./');
+const { types, transform, transformFromAst } = require('babel-core');
+const { constructTitle, getInterpolatedTitleAst, getLabelTitle } = require('./');
 
 const getExpressionStatement = programAst => programAst.program.body[0];
 
@@ -47,6 +47,32 @@ describe('Title', () => {
       const { ast } = transform(code);
       const node = getExpressionStatement(ast);
       expect(getLabelTitle([node], 'when')).toBe('hello world');
+    });
+  });
+
+  describe('.getInterpolatedTitleAst', () => {
+    it('returns string as template literal when given title does not contain any words prefixed with a $', () => {
+      const title = 'a normal title';
+      expect(getInterpolatedTitleAst(types, title)).toEqual(
+        types.templateLiteral([types.templateElement({ raw: title, cooked: title }, true)], [])
+      );
+    });
+
+    it('returns string as template literal when given title contains multiple words prefixed with a $', () => {
+      const title = 'given: $a when: squared then: equals $expected';
+      expect(getInterpolatedTitleAst(types, title)).toEqual(
+        types.templateLiteral(
+          [
+            types.templateElement({ raw: 'given: ', cooked: 'given: ' }, false),
+            types.templateElement(
+              { raw: ' when: squared then: equals ', cooked: ' when: squared then: equals ' },
+              false
+            ),
+            types.templateElement({ raw: '', cooked: '' }, true)
+          ],
+          [types.identifier('a'), types.identifier('expected')]
+        )
+      );
     });
   });
 });
