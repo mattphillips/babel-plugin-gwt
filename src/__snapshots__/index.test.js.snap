@@ -63,6 +63,88 @@ it('add given: a and b when: added then: returns 2', () => {
 "
 `;
 
+exports[`gwt transforms it title to be a tagged template string with arguments specified in given when then with $ symbol: transforms it title to be a tagged template string with arguments specified in given when then with $ symbol 1`] = `
+"
+it('add', () => {
+  given: '$a and $b'
+
+  when: 'added'
+  const actual = a + b;
+
+  then: 'returns $expected'
+  expect(actual).toBe(expected);
+
+  where: {
+    a | b || expected
+    0 | 0 || 0
+    1 | 1 || 2
+  }
+});
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+[{
+  a: 0,
+  b: 0,
+  expected: 0
+}, {
+  a: 1,
+  b: 1,
+  expected: 2
+}].forEach(({
+  a,
+  b,
+  expected
+}) => {
+  it(\`add given: \${a} and \${b} when: added then: returns \${expected}\`, () => {
+    const actual = a + b;
+
+    expect(actual).toBe(expected);
+  });
+});
+"
+`;
+
+exports[`gwt transforms it title to be a tagged template string with arguments specified in title with $ symbol: transforms it title to be a tagged template string with arguments specified in title with $ symbol 1`] = `
+"
+it('.add($a, $b)', () => {
+  when: 'added'
+  const actual = a + b;
+
+  then: 'returns $expected'
+  expect(actual).toBe(expected);
+
+  where: {
+    a | b || expected
+    0 | 0 || 0
+    1 | 1 || 2
+  }
+});
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+[{
+  a: 0,
+  b: 0,
+  expected: 0
+}, {
+  a: 1,
+  b: 1,
+  expected: 2
+}].forEach(({
+  a,
+  b,
+  expected
+}) => {
+  it(\`.add(\${a}, \${b}) when: added then: returns \${expected}\`, () => {
+    const actual = a + b;
+
+    expect(actual).toBe(expected);
+  });
+});
+"
+`;
+
 exports[`gwt transforms it to multiple rows when given a where block tabel: transforms it to multiple rows when given a where block tabel 1`] = `
 "
 it('add', () => {
@@ -96,7 +178,7 @@ it('add', () => {
   b,
   expected
 }) => {
-  it('add given: a and b when: added then: returns 2', () => {
+  it(\`add given: a and b when: added then: returns 2\`, () => {
     const actual = a + b;
 
     expect(actual).toBe(expected);

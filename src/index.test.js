@@ -149,6 +149,44 @@ pluginTester({
         }
       });
       `
+    },
+    'transforms it title to be a tagged template string with arguments specified in given when then with $ symbol': {
+      snapshot: true,
+      code: `
+      it('add', () => {
+        given: '$a and $b'
+
+        when: 'added'
+        const actual = a + b;
+
+        then: 'returns $expected'
+        expect(actual).toBe(expected);
+
+        where: {
+          a | b || expected
+          0 | 0 || 0
+          1 | 1 || 2
+        }
+      });
+      `
+    },
+    'transforms it title to be a tagged template string with arguments specified in title with $ symbol': {
+      snapshot: true,
+      code: `
+      it('.add($a, $b)', () => {
+        when: 'added'
+        const actual = a + b;
+
+        then: 'returns $expected'
+        expect(actual).toBe(expected);
+
+        where: {
+          a | b || expected
+          0 | 0 || 0
+          1 | 1 || 2
+        }
+      });
+      `
     }
   }
 });

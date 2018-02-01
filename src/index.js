@@ -1,5 +1,5 @@
 const { isOnlyBlock, isSkipBlock, isTestBlock } = require('./identifiers');
-const { constructTitle, getLabelTitle } = require('./title');
+const { constructTitle, getInterpolatedTitleAst, getLabelTitle } = require('./title');
 const { getRows } = require('./where');
 
 module.exports = gwtPlugin;
@@ -59,7 +59,10 @@ function gwtPlugin({ types: t }) {
               [t.objectPattern(forEachFunctionArguments)],
               t.blockStatement([
                 t.expressionStatement(
-                  t.callExpression(type, [testTitle, t.arrowFunctionExpression([], t.blockStatement(body))])
+                  t.callExpression(type, [
+                    getInterpolatedTitleAst(t, title),
+                    t.arrowFunctionExpression([], t.blockStatement(body))
+                  ])
                 )
               ])
             )
