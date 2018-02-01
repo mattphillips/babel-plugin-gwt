@@ -37,6 +37,9 @@ yarn add -D babel-plugin-gwt
 ## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+| [<img src="https://avatars0.githubusercontent.com/u/5610087?v=4" width="100px;"/><br /><sub><b>Matt Phillips</b></sub>](http://mattphillips.io)<br />[💻](https://github.com/mattphillips/babel-plugin-gwt/commits?author=mattphillips "Code") [📖](https://github.com/mattphillips/babel-plugin-gwt/commits?author=mattphillips "Documentation") [💡](#example-mattphillips "Examples") [🤔](#ideas-mattphillips "Ideas, Planning, & Feedback") [⚠️](https://github.com/mattphillips/babel-plugin-gwt/commits?author=mattphillips "Tests") |
+| :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ## LICENSE

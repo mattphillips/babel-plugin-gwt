@@ -3,7 +3,20 @@
   "version": "0.0.1",
   "description": "Paramiterised testing babel plugin inspired by Groovy's Spock testing library",
   "main": "dist/index.js",
-  "scripts": {},
+  "scripts": {
+    "build": "babel src -d dist --ignore *.test.js",
+    "contributor": "all-contributors add",
+    "contributor:gen": "all-contributors generate",
+    "lint": "eslint src",
+    "lint:fix": "yarn lint -- --fix",
+    "precommit": "lint-staged",
+    "prepublish": "yarn build",
+    "prettier": "prettier 'src/**/*.js' --write --single-quote=true --print-width=120",
+    "test": "jest",
+    "test:coverage": "yarn test -- --coverage",
+    "test:report": "codecov",
+    "test:watch": "yarn test -- --watch"
+  },
   "keywords": [
     "babel",
     "plugin",
@@ -26,5 +39,49 @@
   "bugs": {
     "url": "https://github.com/mattphillips/babel-plugin-gwt/issues"
   },
-  "homepage": "https://github.com/mattphillips/babel-plugin-gwt#readme"
+  "homepage": "https://github.com/mattphillips/babel-plugin-gwt#readme",
+  "devDependencies": {
+    "all-contributors-cli": "^4.10.1",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.1",
+    "babel-jest": "^22.1.0",
+    "babel-jest-assertions": "^0.1.0",
+    "babel-plugin-tester": "^5.0.0",
+    "eslint": "^4.16.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jest": "^21.7.0",
+    "husky": "^0.14.3",
+    "jest": "^22.1.4",
+    "jest-each": "^0.3.1",
+    "jest-extended": "^0.5.0",
+    "lint-staged": "^6.1.0",
+    "prettier": "^1.10.2"
+  },
+  "lint-staged": {
+    "*.js": [
+      "yarn prettier",
+      "git add"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/fixtures/"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "setupTestFrameworkScriptFile": "jest-extended",
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    },
+    "setupTestFrameworkScriptFile": "jest-extended"
+  }
 }
