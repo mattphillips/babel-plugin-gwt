@@ -23,6 +23,25 @@ const isOnlyBlock = path =>
     }
   });
 
+const isSkipBlock = path =>
+  looksLike(path, {
+    expression: {
+      callee: {
+        type: 'MemberExpression',
+        object: {
+          type: 'Identifier',
+          name: n => n === 'it' || n === 'test'
+        },
+        property: {
+          type: 'Identifier',
+          name: 'skip'
+        }
+      },
+      arguments: hasBodyFunction
+    }
+  });
+
 module.exports = {
-  isOnlyBlock
+  isOnlyBlock,
+  isSkipBlock
 };
