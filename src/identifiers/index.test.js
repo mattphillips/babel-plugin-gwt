@@ -40,14 +40,14 @@ describe('Identifers', () => {
 
   describe('.isSkipBlock', () => {
     each([['it'], ['test']]).it('returns false when given %s block without skip property ', name => {
-      const code = `${name}("description", () => {});`;
+      const code = `${name}("description", function () {});`;
       const { ast } = transform(code);
       const node = getExpressionStatement(ast);
       expect(isSkipBlock(node)).toBeFalse();
     });
 
     each([['it'], ['test']]).it('returns true when given %s block with skip property ', name => {
-      const code = `${name}.skip("description", () => {});`;
+      const code = `${name}.skip("description", function () {});`;
       const { ast } = transform(code);
       const node = getExpressionStatement(ast);
       expect(isSkipBlock(node)).toBeTrue();
