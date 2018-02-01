@@ -111,6 +111,44 @@ pluginTester({
         expect(actual).toBe(2);
       });
       `
+    },
+    'transforms it without where block when only given table titles': {
+      snapshot: true,
+      code: `
+      it('add', () => {
+        given: 'a and b'
+
+        when: 'added'
+        const actual = a + b;
+
+        then: 'returns 2'
+        expect(actual).toBe(expected);
+
+        where: {
+          a | b || expected
+        }
+      });
+      `
+    },
+    'transforms it to multiple rows when given a where block tabel': {
+      snapshot: true,
+      code: `
+      it('add', () => {
+        given: 'a and b'
+
+        when: 'added'
+        const actual = a + b;
+
+        then: 'returns 2'
+        expect(actual).toBe(expected);
+
+        where: {
+          a | b || expected
+          0 | 0 || 0
+          1 | 1 || 2
+        }
+      });
+      `
     }
   }
 });

@@ -63,6 +63,74 @@ it('add given: a and b when: added then: returns 2', () => {
 "
 `;
 
+exports[`gwt transforms it to multiple rows when given a where block tabel: transforms it to multiple rows when given a where block tabel 1`] = `
+"
+it('add', () => {
+  given: 'a and b'
+
+  when: 'added'
+  const actual = a + b;
+
+  then: 'returns 2'
+  expect(actual).toBe(expected);
+
+  where: {
+    a | b || expected
+    0 | 0 || 0
+    1 | 1 || 2
+  }
+});
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+[{
+  a: 0,
+  b: 0,
+  expected: 0
+}, {
+  a: 1,
+  b: 1,
+  expected: 2
+}].forEach(({
+  a,
+  b,
+  expected
+}) => {
+  it('add given: a and b when: added then: returns 2', () => {
+    const actual = a + b;
+
+    expect(actual).toBe(expected);
+  });
+});
+"
+`;
+
+exports[`gwt transforms it without where block when only given table titles: transforms it without where block when only given table titles 1`] = `
+"
+it('add', () => {
+  given: 'a and b'
+
+  when: 'added'
+  const actual = a + b;
+
+  then: 'returns 2'
+  expect(actual).toBe(expected);
+
+  where: {
+    a | b || expected
+  }
+});
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+it('add given: a and b when: added then: returns 2', () => {
+  const actual = a + b;
+
+  expect(actual).toBe(expected);
+});
+"
+`;
+
 exports[`gwt transforms it.only block with given label: transforms it.only block with given label 1`] = `
 "
 it('add', () => {
