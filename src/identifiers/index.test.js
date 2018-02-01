@@ -1,7 +1,7 @@
 const each = require('jest-each');
 const { transform } = require('babel-core');
 
-const { isOnlyBlock, isSkipBlock } = require('./');
+const { isOnlyBlock, isSkipBlock, isTestBlock } = require('./');
 
 const getExpressionStatement = programAst => programAst.program.body[0];
 
@@ -35,6 +35,22 @@ describe('Identifers', () => {
       const { ast } = transform(code);
       const node = getExpressionStatement(ast);
       expect(isSkipBlock(node)).toBeTrue();
+    });
+  });
+
+  describe('.isTestBlock', () => {
+    it('returns false when given random block ', () => {
+      const code = 'random("description", () => {});';
+      const { ast } = transform(code);
+      const node = getExpressionStatement(ast);
+      expect(isTestBlock(node)).toBeFalse();
+    });
+
+    each([['it'], ['test'], ['fit'], ['ftest'], ['xit'], ['xtest']]).it('returns true when given %s block ', name => {
+      const code = `${name}("description", () => {});`;
+      const { ast } = transform(code);
+      const node = getExpressionStatement(ast);
+      expect(isTestBlock(node)).toBeTrue();
     });
   });
 });

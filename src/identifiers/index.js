@@ -1,5 +1,7 @@
 const looksLike = require('../utils/looks-like');
 
+const TEST_NAMES = ['it', 'test', 'fit', 'ftest', 'xit', 'xtest'];
+
 const hasBodyFunction = args =>
   looksLike(args[1], {
     type: t => t === 'ArrowFunctionExpression' || t === 'FunctionExpression'
@@ -41,7 +43,18 @@ const isSkipBlock = path =>
     }
   });
 
+const isTestBlock = path =>
+  looksLike(path, {
+    expression: {
+      callee: {
+        type: 'Identifier',
+        name: name => TEST_NAMES.includes(name)
+      }
+    }
+  });
+
 module.exports = {
   isOnlyBlock,
-  isSkipBlock
+  isSkipBlock,
+  isTestBlock
 };
