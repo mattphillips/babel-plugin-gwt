@@ -1,11 +1,27 @@
 const each = require('jest-each');
 const { transform } = require('babel-core');
 
-const { isOnlyBlock, isSkipBlock, isTestBlock } = require('./');
+const { isLabelBlock, isOnlyBlock, isSkipBlock, isTestBlock } = require('./');
 
 const getExpressionStatement = programAst => programAst.program.body[0];
 
 describe('Identifers', () => {
+  describe('.isLabelBlock', () => {
+    it('returns false when given label does not match given label name', () => {
+      const code = 'random: "hello world"';
+      const { ast } = transform(code);
+      const node = getExpressionStatement(ast);
+      expect(isLabelBlock('given')(node)).toBeFalse();
+    });
+
+    it('returns true when given label matches given label name', () => {
+      const code = 'given: "hello world"';
+      const { ast } = transform(code);
+      const node = getExpressionStatement(ast);
+      expect(isLabelBlock('given')(node)).toBeTrue();
+    });
+  });
+
   describe('.isOnlyBlock', () => {
     each([['it'], ['test']]).it('returns false when given %s block without only property ', name => {
       const code = `${name}("description", () => {});`;

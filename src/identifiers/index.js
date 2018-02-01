@@ -7,6 +7,11 @@ const hasBodyFunction = args =>
     type: t => t === 'ArrowFunctionExpression' || t === 'FunctionExpression'
   });
 
+const isLabelBlock = name => path =>
+  looksLike(path, {
+    label: { type: 'Identifier', name }
+  });
+
 const isOnlyBlock = path =>
   looksLike(path, {
     expression: {
@@ -54,6 +59,7 @@ const isTestBlock = path =>
   });
 
 module.exports = {
+  isLabelBlock,
   isOnlyBlock,
   isSkipBlock,
   isTestBlock
