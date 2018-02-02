@@ -76,7 +76,6 @@
     "coveragePathIgnorePatterns": [
       "/node_modules/"
     ],
-    "setupTestFrameworkScriptFile": "jest-extended",
     "coverageThreshold": {
       "global": {
         "branches": 100,
