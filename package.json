@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-gwt",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Data Driven Testing babel plugin inspired by Groovy's Spock framework",
   "main": "dist/index.js",
   "scripts": {
