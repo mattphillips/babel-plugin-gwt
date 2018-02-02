@@ -8,14 +8,14 @@
     "contributor": "all-contributors add",
     "contributor:gen": "all-contributors generate",
     "lint": "eslint src",
-    "lint:fix": "yarn lint -- --fix",
+    "lint:fix": "yarn lint --fix",
     "precommit": "lint-staged",
     "prepublish": "yarn build",
     "prettier": "prettier 'src/**/*.js' --write --single-quote=true --print-width=120",
     "test": "jest",
-    "test:coverage": "yarn test -- --coverage",
+    "test:coverage": "yarn test --coverage",
     "test:report": "codecov",
-    "test:watch": "yarn test -- --watch"
+    "test:watch": "yarn test --watch"
   },
   "keywords": [
     "babel",
@@ -51,6 +51,7 @@
     "babel-jest": "^22.1.0",
     "babel-jest-assertions": "^0.1.0",
     "babel-plugin-tester": "^5.0.0",
+    "codecov": "^3.0.0",
     "eslint": "^4.16.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jest": "^21.7.0",
